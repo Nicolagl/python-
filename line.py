@@ -20,5 +20,8 @@ for i in range(1,5):
 aa=head
 while aa!=None:
     print(aa.data)
+    if(aa.next==None):
+        break
     aa=aa.next
 #链表如果用自身遍历查看就会消除，可用哨兵节点来遍历
+print(aa.data)
