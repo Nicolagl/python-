@@ -23,8 +23,9 @@ a=Array(5)
 print(len(a),a)
 
 
-
-
+for i in range(len(a)):
+    a[i]=i+1
+print(a)
 
 
 '''class Grid(object):
@@ -35,4 +36,5 @@ print(len(a),a)
 
 tab=Grid(4,5,7)
 
-print(tab)'''
+print(tab)
+'''
