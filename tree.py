@@ -51,11 +51,19 @@ class BinaryTree:
         self.key = obj
     def get_root_val(self):
         return self.key
-
-x = binary_tree('a')
+'''x = binary_tree('a')
 insert_left(x,'b')
 insert_right(x,'c')
 insert_right(get_right_child(x), 'd')  # important!
 insert_left(get_right_child(get_right_child(x)), 'e')
-
-print(x)
+print(x)'''
+y=BinaryTree(5)
+y.insert_left(47)
+print(y.key)
+print(y.left_child.key)
+y.insert_left(BinaryTree(78))
+a=y.get_left_child()
+a=a.key
+print("a====",a)
+print(y.get_left_child())
+print(y.get_right_child())
