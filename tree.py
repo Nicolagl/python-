@@ -1,4 +1,4 @@
-def binary_tree(r):
+'''def binary_tree(r):
     return [r, [], []]
 def insert_left(root, new_branch):
     t = root.pop(1)   # The left child position
@@ -23,7 +23,7 @@ def get_left_child(root):
     return root[1]
 def get_right_child(root):
     return root[2]
-
+'''
 class BinaryTree:
     def __init__(self, root):
         self.key = root
@@ -61,9 +61,9 @@ y=BinaryTree(5)
 y.insert_left(47)
 print(y.key)
 print(y.left_child.key)
-y.insert_left(BinaryTree(78))
+
 a=y.get_left_child()
 a=a.key
 print("a====",a)
-print(y.get_left_child())
+print(y.get_left_child().key)
 print(y.get_right_child())
