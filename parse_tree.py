@@ -1,3 +1,4 @@
+import operator
 def binary_tree(r):
     return [r, [], []]
 def insert_left(root, new_branch):
@@ -51,19 +52,62 @@ class BinaryTree:
         self.key = obj
     def get_root_val(self):
         return self.key
-'''x = binary_tree('a')
-insert_left(x,'b')
-insert_right(x,'c')
-insert_right(get_right_child(x), 'd')  # important!
-insert_left(get_right_child(get_right_child(x)), 'e')
-print(x)'''
-y=BinaryTree(5)
-y.insert_left(47)
-print(y.key)
-print(y.left_child.key)
+class Stack(object):
 
-a=y.get_left_child()
-a=a.key
-print("a====",a)
-print(y.get_left_child().key)
-print(y.get_right_child())
+    def __init__(self):
+        self.stack = []
+
+    def push(self, data):
+        """
+        进栈函数
+        """
+        self.stack.append(data)
+
+    def pop(self):
+        """
+        出栈函数，
+        """
+        return self.stack.pop()
+
+    def gettop(self):
+        """
+        取栈顶
+        """
+        return self.stack[-1]
+
+def build_parse_tree(fp_exp):
+    fp_list = fp_exp.split()
+    p_stack = Stack()
+    e_tree = BinaryTree('')
+    p_stack.push(e_tree)
+    current_tree = e_tree
+    for i in fp_list:
+        if i == '(':
+            current_tree.insert_left('')
+            p_stack.push(current_tree)
+            current_tree = current_tree.get_left_child()
+        elif i not in ['+','-','*','/',')']:
+            current_tree.set_root_val(i)
+            parent = p_stack.pop()
+            current_tree = parent
+        elif i in ['+','-','*','/']:
+            current_tree.set_root_val(i)
+            current_tree.insert_right('')
+            p_stack.push(current_tree)
+            current_tree = current_tree.get_right_child()
+        elif i == ')':
+            current_tree = p_stack.pop()
+        else:
+            raise ValueError
+    return e_tree
+
+def preorder(tree):
+    if tree:
+        print(tree.get_root_val())
+        preorder(tree.get_left_child())
+        preorder(tree.get_right_child())
+
+
+a="78*(6+6)+52"
+b=build_parse_tree("1+5(54-7)+7")
+preorder(b)
